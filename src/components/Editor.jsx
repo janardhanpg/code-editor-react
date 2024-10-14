@@ -1,33 +1,45 @@
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import "codemirror/lib/codemirror.css";
 import "codemirror/theme/dracula.css";
 import "codemirror/theme/material.css";
+
 import "codemirror/theme/mdn-like.css";
 import "codemirror/theme/the-matrix.css";
 import "codemirror/theme/night.css";
+
 import "codemirror/mode/xml/xml";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/mode/css/css";
-import { useState } from "react";
+
+import "codemirror/addon/edit/closebrackets";
+import "codemirror/addon/edit/closetag";
+
 import { Controlled as ControlledEditorComponent } from "react-codemirror2";
 
 const Editor = ({ language, value, setEditorState }) => {
-  const themeArray = ["dracula", "material", "mdn-like", "the-matrix", "night"];
-  const [theme, setTheme] = useState(themeArray[0]);
+  const [theme, setTheme] = useState("dracula");
   const handleChange = (editor, data, value) => {
     setEditorState(value);
   };
+
+  const themeArray = ["dracula", "material", "mdn-like", "the-matrix", "night"];
+
   return (
     <div className="editor-container">
-         <div style={{marginBottom: "10px"}}>
+      <div style={{ marginBottom: "10px" }}>
         <label htmlFor="themes">Choose a theme: </label>
-        <select name="theme" onChange={(el) => {
-          setTheme(el.target.value)
-        }}>
-          {
-            themeArray.map( theme => (
-              <option value={theme} key={theme}>{theme}</option>
-            ))
-          }
+        <select
+          name="theme"
+          onChange={(el) => {
+            setTheme(el.target.value);
+          }}
+        >
+          {themeArray.map((theme) => (
+            <option key={theme} value={theme}>
+              {theme}
+            </option>
+          ))}
         </select>
       </div>
       <ControlledEditorComponent
@@ -39,7 +51,9 @@ const Editor = ({ language, value, setEditorState }) => {
           lint: true,
           mode: language,
           lineNumbers: true,
-          theme:theme
+          theme: theme,
+          autoCloseTags: true,
+          autoCloseBrackets: true,
         }}
       />
     </div>

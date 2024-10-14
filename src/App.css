@@ -1,3 +1,10 @@
-.tab-button-container{
+body {
+  padding: 3rem;
+}
+.tab-button-container {
   display: flex;
+}
+
+.editor-container {
+  padding-top: 0.4%;
 }
