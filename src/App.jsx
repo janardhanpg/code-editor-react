@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>Welcome to the edior</p>
+      <p>Welcome to the code edior</p>
       <div className="tab-button-container">
         <Button
           backgroundColor={activeButton === "html" ? "blue" : ""}
