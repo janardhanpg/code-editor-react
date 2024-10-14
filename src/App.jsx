@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Button from "./components/Button";
 import Editor from "./components/Editor";
@@ -34,9 +34,11 @@ function App() {
   }, [html, css, js]);
 
   return (
-    <div className="App">
-      <p>Welcome to the code edior</p>
-      <div className="tab-button-container">
+    <div className="p-6">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">Welcome to the Code Editor</h1>
+      
+      {/* Button Section */}
+      <div className="flex space-x-4 mb-6">
         <Button
           backgroundColor={activeButton === "html" ? "blue" : ""}
           title="HTML"
@@ -59,7 +61,9 @@ function App() {
           }}
         />
       </div>
-      <div className="editor-container">
+      
+      {/* Editor Section */}
+      <div className="mb-6 border rounded-lg overflow-hidden shadow-lg">
         {openedEditor === "html" ? (
           <Editor
             language="xml"
@@ -83,15 +87,16 @@ function App() {
           />
         )}
       </div>
-      <div>
+
+      {/* Output Section */}
+      <div className="border rounded-lg shadow-lg">
         <iframe
           id="my_iframe"
           srcDoc={srcDoc}
           title="output"
           sandbox="allow-scripts"
-          frameBorder="1"
-          width="100%"
-          height="100%"
+          frameBorder="0"
+          className="w-full h-96"
         />
       </div>
     </div>
